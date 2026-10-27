@@ -236,6 +236,7 @@ async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif action == "quiz":
         context.user_data["quiz_order"] = random.sample(range(len(QUIZ)), len(QUIZ))
         context.user_data["quiz_index"] = 0
+        context.user_data["quiz_start_correct"] = get_user_progress(query.from_user.id).get("quiz_correct", 0)
         await send_quiz_question(query, context)
     elif action.startswith("answer:"):
         parts = action.split(":")
