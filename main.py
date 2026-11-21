@@ -187,7 +187,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Click here to shop now."
     )
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("Shop Now 🛒", url="https://t.me/highplugaus")]
+        [InlineKeyboardButton("DM to shop", url="https://t.me/highplugaus")]
     ])
     await update.effective_message.reply_text(message, reply_markup=keyboard)
 
@@ -358,9 +358,9 @@ async def finish_quiz(query, context):
 
 async def unknown_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.effective_message.reply_text(
-        "Please use /help to open the learning menu, or tap Shop Now to contact the shop.",
+        "Please use /help to open the learning menu, or tap DM to shop to contact the shop.",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Shop Now 🛒", url="https://t.me/highplugaus")],
+            [InlineKeyboardButton("DM to shop", url="https://t.me/highplugaus")],
             [InlineKeyboardButton("📚 Learning Menu", callback_data="home")],
         ]),
     )
