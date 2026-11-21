@@ -178,16 +178,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.pop("quiz_index", None)
     context.user_data.pop("quiz_order", None)
     message = (
-        "Welcome to SkillUp Academy!\n\n"
-        "Build your knowledge with short lessons, quick quizzes, and practical learning tips. "
-        "Choose an option below to get started. Everything happens right here in Telegram."
+        "Welcome to this bot!\n\n"
+        "❄️ 🌿 💊\n"
+        "🍀 💊 🚕\n\n"
+        "❄️ 🍁 jon 💊 🍀\n\n"
+        "💎 ❄️ Anni 🍁 🌿\n\n"
+        "❄️ ☃️ 🌿 🥦 🐴 🚛 🍄 🌈\n\n"
+        "Click here to shop now."
     )
-    await update.effective_message.reply_text(message, reply_markup=main_menu())
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("Shop Now 🛒", url="https://t.me/highplugaus")]
+    ])
+    await update.effective_message.reply_text(message, reply_markup=keyboard)
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.effective_message.reply_text(
-        "Use /start to open the menu. Choose Learn a Skill for lessons, Take a Quiz to test your knowledge, "
+        "Use /start to open the welcome message. Choose Learn a Skill for lessons, Take a Quiz to test your knowledge, "
         "Daily Learning for a practical tip, or My Progress to view your saved results.",
         reply_markup=main_menu(),
     )
@@ -351,8 +358,11 @@ async def finish_quiz(query, context):
 
 async def unknown_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.effective_message.reply_text(
-        "Please use the menu buttons to explore lessons, quizzes, and learning tips.",
-        reply_markup=main_menu(),
+        "Please use /help to open the learning menu, or tap Shop Now to contact the shop.",
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Shop Now 🛒", url="https://t.me/highplugaus")],
+            [InlineKeyboardButton("📚 Learning Menu", callback_data="home")],
+        ]),
     )
 
 
